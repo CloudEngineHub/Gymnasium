@@ -30,7 +30,6 @@ from tqdm import tqdm
 import gymnasium as gym
 from gymnasium.envs.toy_text.frozen_lake import generate_random_map
 
-
 sns.set_theme()
 
 # %load_ext lab_black
@@ -69,7 +68,6 @@ params = Params(
     state_size=None,
     proba_frozen=0.9,
 )
-params
 
 # Set the seed
 rng = np.random.default_rng(params.seed)
@@ -532,7 +530,7 @@ plot_steps_and_rewards(res_all, st_all)
 #
 # -  Code inspired by `Deep Reinforcement Learning
 #    Course <https://simoninithomas.github.io/Deep_reinforcement_learning_Course/>`__
-#    by Thomas Simonini (http://simoninithomas.com/)
+#    by Thomas Simonini (https://www.simoninithomas.com/)
 # -  `Dissecting Reinforcement
 #    Learning-Part.2 <https://mpatacchiola.github.io/blog/2017/01/15/dissecting-reinforcement-learning-2.html>`__
 # -  `David Silver’s course <https://www.davidsilver.uk/teaching/>`__ in

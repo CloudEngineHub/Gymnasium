@@ -14,7 +14,7 @@
     <link rel="shortcut icon" href="../../../_static/favicon.png"/><!-- Generated with Sphinx 7.4.7 and Furo 2023.08.19.dev1 -->
         <title>Make your own custom environment - Gymnasium Documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=3e7f4c72" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=5b1a364e" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=61a4c737" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -379,7 +379,7 @@
             
             <div class="sphx-glr-example-title admonition note">
 <p class="admonition-title">Note</p>
-<p>This tutorial is compatible with Gymnasium version 1.2.0.</p>
+<p>This tutorial is compatible with Gymnasium version 1.3.0.</p>
 </div>
 <section id="make-your-own-custom-environment">
 <span id="sphx-glr-tutorials-gymnasium-basics-environment-creation-py"></span><h1>Make your own custom environment<a class="headerlink" href="#make-your-own-custom-environment" title="Link to this heading">¶</a></h1>
@@ -389,7 +389,7 @@
 <section id="recommended-solution">
 <h3>Recommended solution<a class="headerlink" href="#recommended-solution" title="Link to this heading">¶</a></h3>
 <ol class="arabic simple">
-<li><p>Install <code class="docutils literal notranslate"><span class="pre">pipx</span></code> following the <a class="reference external" href="https://pypa.github.io/pipx/installation/">pipx documentation</a>.</p></li>
+<li><p>Install <code class="docutils literal notranslate"><span class="pre">pipx</span></code> following the <a class="reference external" href="https://pipx.pypa.io/stable/how-to/install-pipx/">pipx documentation</a>.</p></li>
 <li><p>Then install Copier:</p></li>
 </ol>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pipx install copier</span>
@@ -530,12 +530,13 @@ declaration of <code class="docutils literal notranslate"><span class="pre">Grid
 <span class="sd">        The following dictionary maps abstract actions from `self.action_space` to</span>
 <span class="sd">        the direction we will walk in if that action is taken.</span>
 <span class="sd">        i.e. 0 corresponds to &quot;right&quot;, 1 to &quot;up&quot; etc.</span>
+<span class="sd">        Uses NumPy [row, col] convention where row 0 is at the top.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_action_to_direction</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="n">Actions</span><span class="o">.</span><span class="n">RIGHT</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>
-            <span class="n">Actions</span><span class="o">.</span><span class="n">UP</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
-            <span class="n">Actions</span><span class="o">.</span><span class="n">LEFT</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>
-            <span class="n">Actions</span><span class="o">.</span><span class="n">DOWN</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+            <span class="n">Actions</span><span class="o">.</span><span class="n">RIGHT</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+            <span class="n">Actions</span><span class="o">.</span><span class="n">UP</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>
+            <span class="n">Actions</span><span class="o">.</span><span class="n">LEFT</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+            <span class="n">Actions</span><span class="o">.</span><span class="n">DOWN</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>
         <span class="p">}</span>
 
         <span class="k">assert</span> <span class="n">render_mode</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">render_mode</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;render_modes&quot;</span><span class="p">]</span>
@@ -681,11 +682,12 @@ can use it as a skeleton for your own environments:</p>
     <span class="p">)</span>  <span class="c1"># The size of a single grid square in pixels</span>
 
     <span class="c1"># First we draw the target</span>
+    <span class="c1"># Convert [row, col] to pygame (x, y) by reversing the coordinates</span>
     <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span>
         <span class="n">canvas</span><span class="p">,</span>
         <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
         <span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span>
-            <span class="n">pix_square_size</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_target_location</span><span class="p">,</span>
+            <span class="n">pix_square_size</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_target_location</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
             <span class="p">(</span><span class="n">pix_square_size</span><span class="p">,</span> <span class="n">pix_square_size</span><span class="p">),</span>
         <span class="p">),</span>
     <span class="p">)</span>
@@ -693,7 +695,7 @@ can use it as a skeleton for your own environments:</p>
     <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span>
         <span class="n">canvas</span><span class="p">,</span>
         <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
-        <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_agent_location</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="n">pix_square_size</span><span class="p">,</span>
+        <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_agent_location</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="n">pix_square_size</span><span class="p">,</span>
         <span class="n">pix_square_size</span> <span class="o">/</span> <span class="mi">3</span><span class="p">,</span>
     <span class="p">)</span>
 
@@ -962,7 +964,7 @@ in <code class="docutils literal notranslate"><span class="pre">gymnasium_env/wr
           <div class="bottom-of-page">
             <div class="left-details">
               <div class="copyright">
-                Copyright &#169; 2025 Farama Foundation
+                Copyright &#169; 2026 Farama Foundation
               </div>
               <!--
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
@@ -1104,7 +1106,7 @@ in <code class="docutils literal notranslate"><span class="pre">gymnasium_env/wr
         })()
       </script>
 
-    <script src="../../../_static/documentation_options.js?v=151cd43d"></script>
+    <script src="../../../_static/documentation_options.js?v=0559ecf3"></script>
     <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/furo.js?v=7660844c"></script>
@@ -1168,14 +1170,6 @@ in <code class="docutils literal notranslate"><span class="pre">gymnasium_env/wr
         const jsonResponse = xhr.response;
         const sections = {
           "Core Projects": [],
-          "Mature Projects": {
-            "Documentation": [],
-            "Repositories": [],
-          },
-          "Incubating Projects": {
-            "Documentation": [],
-            "Repositories": [],
-          },
           "Foundation": [
             {
               name: "About",
@@ -1189,7 +1183,14 @@ in <code class="docutils literal notranslate"><span class="pre">gymnasium_env/wr
               name: "Donate",
               link: "https://farama.org/donations"
             }
-          ]
+          ],
+          "Mature Projects": {
+            "Documentation": [],
+          },
+          "Incubating Projects": {
+            "Documentation": [],
+            "Repositories": [],
+          }
         }
 
         // Categorize projects
@@ -1205,8 +1206,6 @@ in <code class="docutils literal notranslate"><span class="pre">gymnasium_env/wr
           } else if (projectJson.type == "mature") {
             if (projectJson.website !== null) {
               sections["Mature Projects"]["Documentation"].push(projectJson)
-            } else {
-              sections["Mature Projects"]["Repositories"].push(projectJson)
             }
           } else {
             if (projectJson.website !== null) {
@@ -1218,6 +1217,13 @@ in <code class="docutils literal notranslate"><span class="pre">gymnasium_env/wr
         })
 
         const menuContainer = document.querySelector(".farama-header-menu__body");
+
+        const stackedColumnElem = Object.assign(
+          document.createElement('div'), {
+            style: 'display: flex; flex-direction: column;'
+          }
+        );
+        const stackedKeys = new Set(["Core Projects", "Foundation"]);
 
         Object.keys(sections).forEach((key, i) => {
           const sectionElem = Object.assign(
@@ -1262,7 +1268,14 @@ in <code class="docutils literal notranslate"><span class="pre">gymnasium_env/wr
             const ulElem = createProjectsList(projects, true);
             sectionElem.appendChild(ulElem);
           }
-          menuContainer.appendChild(sectionElem)
+          if (stackedKeys.has(key)) {
+            if (!stackedColumnElem.parentNode) {
+              menuContainer.appendChild(stackedColumnElem);
+            }
+            stackedColumnElem.appendChild(sectionElem);
+          } else {
+            menuContainer.appendChild(sectionElem);
+          }
         });
       }
 

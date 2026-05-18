@@ -14,7 +14,7 @@
     <link rel="shortcut icon" href="../../_static/favicon.png"/><!-- Generated with Sphinx 7.4.7 and Furo 2023.08.19.dev1 -->
         <title>Gym Migration Guide - Gymnasium Documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=3e7f4c72" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=5b1a364e" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -651,14 +651,13 @@
 <section id="timelimit-wrapper-changes">
 <h2>TimeLimit Wrapper Changes<a class="headerlink" href="#timelimit-wrapper-changes" title="Link to this heading">¶</a></h2>
 <p>The <a class="reference internal" href="../../api/wrappers/misc_wrappers/#gymnasium.wrappers.TimeLimit" title="gymnasium.wrappers.TimeLimit"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimeLimit</span></code></a> wrapper behavior also changed to align with the new termination model.</p>
-<p><strong>Old v0.21</strong>: Added <cite>TimeLimit.truncated</cite> to info dict
-<a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>python
-obs, reward, done, info = env.step(action)
-if done and info.get(‘TimeLimit.truncated’, False):</p>
-<blockquote>
-<div><p># Episode ended due to time limit
-pass</p>
-</div></blockquote>
+<p><strong>Old v0.21</strong>: Added <code class="docutils literal notranslate"><span class="pre">TimeLimit.truncated</span></code> to info dict</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">obs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">done</span> <span class="ow">and</span> <span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;TimeLimit.truncated&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="c1"># Episode ended due to time limit</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
 <p><strong>New v0.26+</strong>: Uses the <code class="docutils literal notranslate"><span class="pre">truncated</span></code> return value</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">obs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">terminated</span><span class="p">,</span> <span class="n">truncated</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">truncated</span><span class="p">:</span>
@@ -748,7 +747,7 @@ pass</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://gymnasium.farama.org/api/env">Gymnasium API documentation</a></p></li>
 <li><p><a class="reference external" href="https://github.com/Farama-Foundation/Gymnasium/issues">GitHub issues</a> for bug reports</p></li>
-<li><p><a class="reference external" href="https://discord.gg/bnJ6kubTg6">Discord community</a> for questions</p></li>
+<li><p><a class="reference external" href="https://discord.com/invite/bnJ6kubTg6">Discord community</a> for questions</p></li>
 </ul>
 </section>
 </section>
@@ -786,7 +785,7 @@ pass</p>
           <div class="bottom-of-page">
             <div class="left-details">
               <div class="copyright">
-                Copyright &#169; 2025 Farama Foundation
+                Copyright &#169; 2026 Farama Foundation
               </div>
               <!--
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
@@ -937,7 +936,7 @@ pass</p>
         })()
       </script>
 
-    <script src="../../_static/documentation_options.js?v=151cd43d"></script>
+    <script src="../../_static/documentation_options.js?v=0559ecf3"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/furo.js?v=7660844c"></script>
@@ -1001,14 +1000,6 @@ pass</p>
         const jsonResponse = xhr.response;
         const sections = {
           "Core Projects": [],
-          "Mature Projects": {
-            "Documentation": [],
-            "Repositories": [],
-          },
-          "Incubating Projects": {
-            "Documentation": [],
-            "Repositories": [],
-          },
           "Foundation": [
             {
               name: "About",
@@ -1022,7 +1013,14 @@ pass</p>
               name: "Donate",
               link: "https://farama.org/donations"
             }
-          ]
+          ],
+          "Mature Projects": {
+            "Documentation": [],
+          },
+          "Incubating Projects": {
+            "Documentation": [],
+            "Repositories": [],
+          }
         }
 
         // Categorize projects
@@ -1038,8 +1036,6 @@ pass</p>
           } else if (projectJson.type == "mature") {
             if (projectJson.website !== null) {
               sections["Mature Projects"]["Documentation"].push(projectJson)
-            } else {
-              sections["Mature Projects"]["Repositories"].push(projectJson)
             }
           } else {
             if (projectJson.website !== null) {
@@ -1051,6 +1047,13 @@ pass</p>
         })
 
         const menuContainer = document.querySelector(".farama-header-menu__body");
+
+        const stackedColumnElem = Object.assign(
+          document.createElement('div'), {
+            style: 'display: flex; flex-direction: column;'
+          }
+        );
+        const stackedKeys = new Set(["Core Projects", "Foundation"]);
 
         Object.keys(sections).forEach((key, i) => {
           const sectionElem = Object.assign(
@@ -1095,7 +1098,14 @@ pass</p>
             const ulElem = createProjectsList(projects, true);
             sectionElem.appendChild(ulElem);
           }
-          menuContainer.appendChild(sectionElem)
+          if (stackedKeys.has(key)) {
+            if (!stackedColumnElem.parentNode) {
+              menuContainer.appendChild(stackedColumnElem);
+            }
+            stackedColumnElem.appendChild(sectionElem);
+          } else {
+            menuContainer.appendChild(sectionElem);
+          }
         });
       }
 
